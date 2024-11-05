@@ -1,0 +1,21 @@
+services:
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.112.0
+    ports:
+      - "8888:8888" # Prometheus metrics exposed by the Collector
+      - "8889:8889" # Prometheus exporter metrics
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP http receiver
+    volumes:
+        - ./configs/collector/config.yaml:/etc/otel/collector-config.yaml
+
+  aspire:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    ports:
+      - "18888:18888" # Dashboard
+      - "18889:18889" # OTLP gRPC
+
+  # prometheus:
+  # jaeger:
+  # grafana:

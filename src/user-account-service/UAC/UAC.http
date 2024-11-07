@@ -1,0 +1,6 @@
+@UAC_HostAddress = http://localhost:5160
+
+GET {{UAC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

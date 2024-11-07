@@ -2,6 +2,7 @@
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using UAC.Extensions;
 using UAC.Options;
 
 namespace UAC.Configuration;

@@ -1,5 +1,6 @@
 ﻿using UAC.Background;
 using UAC.Configuration;
+using UAC.Extensions;
 using UAC.Features;
 using UAC.Options;
 

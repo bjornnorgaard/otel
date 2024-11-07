@@ -1,4 +1,4 @@
-﻿namespace UAC.Options;
+﻿namespace UAC.Extensions;
 
 public static class OptionsExtensions
 {

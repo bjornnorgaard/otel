@@ -12,14 +12,16 @@ public static class TelemetryConfiguration
     {
         var serviceOptions = builder.Configuration.BindOptions<ServiceOptions>();
         var collectorUri = new Uri(serviceOptions.TelemetryHost);
-        
+
         builder.Services.AddOpenTelemetry()
             .ConfigureResource(resource => resource
-                .AddService(serviceOptions.ServiceName))
+                .AddService(Instrumentation.ServiceName))
             .WithTracing(tracing => tracing
+                .AddSource(Instrumentation.ActivitySource.Name)
                 .AddAspNetCoreInstrumentation()
                 .AddOtlpExporter(o => o.Endpoint = collectorUri))
             .WithMetrics(metrics => metrics
+                .AddMeter(Instrumentation.Meter.Name)
                 .AddAspNetCoreInstrumentation()
                 .AddRuntimeInstrumentation()
                 .AddOtlpExporter(o => o.Endpoint = collectorUri))

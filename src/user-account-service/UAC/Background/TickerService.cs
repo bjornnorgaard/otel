@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using UAC.Configuration;
+﻿using UAC.Configuration;
+using UAC.Metrics;
 
 namespace UAC.Background
 {
@@ -13,6 +13,7 @@ namespace UAC.Background
                 using (Instrumentation.ActivitySource.StartActivity())
                 {
                     logger.LogInformation("Running ticket service running {TickerRunCount} times", i++);
+                    TickerMeter.RecordTick();
                     await Task.Delay(10000, st);
                 }
             }

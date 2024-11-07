@@ -12,6 +12,9 @@ exporters:
     endpoint: http://aspire:18889
     tls:
       insecure: true
+  
+  prometheus:
+    endpoint: 0.0.0.0:8889
 
 service:
   pipelines:
@@ -22,7 +25,7 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/aspire]
+      exporters: [otlp/aspire, prometheus]
     logs:
       receivers: [otlp]
       processors: [batch]

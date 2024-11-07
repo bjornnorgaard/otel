@@ -4,6 +4,7 @@ services:
     image: otel/opentelemetry-collector-contrib:0.113.0
     ports:
       - "4317:4317" # OTLP gRPC
+      - "8889:8889" # Prometheus target
     volumes:
       - ./config/collector/config.yaml:/etc/otelcol-contrib/config.yaml
 

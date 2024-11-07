@@ -3,7 +3,7 @@ services:
   collector:
     image: otel/opentelemetry-collector-contrib:0.113.0
     ports:
-      - "4317:4317" # OTLP gRPC receiver
+      - "4317:4317" # OTLP gRPC
     volumes:
       - ./config/collector/config.yaml:/etc/otelcol-contrib/config.yaml
 
@@ -14,3 +14,11 @@ services:
       - "18889:18889" # OTLP gRPC
     environment:
       DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: "true"
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    ports:
+      - "9090:9090" # UI
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./volumes/prometheus/prometheus-data:/prometheus

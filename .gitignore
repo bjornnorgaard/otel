@@ -560,3 +560,6 @@ go.work.sum
 # Editors
 .idea
 .vscode
+
+# Docker
+volumes

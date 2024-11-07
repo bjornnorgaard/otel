@@ -29,3 +29,7 @@ services:
     ports:
       - "16686:16686" # UI
       - "4317" # OTLP gRPC
+    environment:
+      METRICS_BACKEND: prometheus
+      METRICS_STORAGE_TYPE: prometheus
+      PROMETHEUS_SERVER_URL: http://prometheus:9090

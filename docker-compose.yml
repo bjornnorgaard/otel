@@ -33,3 +33,23 @@ services:
       METRICS_BACKEND: prometheus
       METRICS_STORAGE_TYPE: prometheus
       PROMETHEUS_SERVER_URL: http://prometheus:9090
+
+  opensearch:
+    image: opensearchproject/opensearch:2.18.0
+    ports:
+      - "9200:9200" # REST
+      - "9600:9600" # Monitoring
+    environment:
+      discovery.type: single-node
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: MyVeryS0ecre&tPassword
+      bootstrap.memory_lock: "true" # Disable JVM heap memory swapping
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
+    volumes:
+      - ./volumes/opensearch/data:/usr/share/opensearch/data
+
+  dashboard:
+    image: opensearchproject/opensearch-dashboards:2.18.0
+    ports:
+      - "5601:5601"
+    environment:
+      OPENSEARCH_HOSTS: "https://opensearch:9200"
